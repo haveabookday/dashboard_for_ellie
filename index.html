@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ellie's Cinematic English Dashboard</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Noto+Sans+KR:wght@300;400;500;700&display=swap');
+        
+        body {
+            font-family: 'Inter', 'Noto+Sans+KR', sans-serif;
+            background-color: #1e2124; /* Deep Charcoal for Cinematic feel */
+            color: #f8f9fa;
+        }
+
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 500px;
+            margin: auto;
+            height: 300px;
+        }
+
+        .glass-card {
+            background: rgba(45, 52, 54, 0.7);
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+            backdrop-filter: blur(10px);
+        }
+
+        .tab-active {
+            color: #e84393; /* Pinkish red accent */
+            border-bottom: 3px solid #e84393;
+            font-weight: 700;
+        }
+
+        .btn-link {
+            transition: all 0.3s ease;
+        }
+        .btn-link:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        .fade-in {
+            animation: fadeIn 0.4s ease-out;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(5px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        /* Modal specific styles */
+        #add-modal {
+            background-color: rgba(0, 0, 0, 0.8);
+        }
+    </style>
+</head>
+<body class="p-4 md:p-10">
+    <div class="max-w-6xl mx-auto relative">
+        <!-- Header -->
+        <header class="mb-12 border-l-8 border-pink-600 pl-6">
+            <h1 class="text-4xl font-extrabold tracking-tight text-white">Ellie's Cinematic English <span class="text-pink-600 italic">Archive</span></h1>
+            <p class="text-lg text-gray-400 mt-2 font-medium">좋아하는 영화를 더 깊게 표현하기 위한 Ellie님의 성장 기록</p>
+        </header>
+
+        <!-- Intro Section -->
+        <div class="mb-10 text-gray-300 leading-relaxed max-w-4xl glass-card p-6">
+            <p>이 대시보드는 Ellie님의 학습 데이터를 기반으로 제작된 <b>클라우드 연동형 애플리케이션</b>입니다. 영화에 대한 자신의 통찰을 더욱 <b>'입체적'</b>으로 전달할 수 있도록 전문적인 표현과 리소스를 모아두었습니다. 새롭게 배운 표현이 있다면 우측 하단의 <b>+ 버튼</b>을 눌러 직접 저장해 보세요!</p>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 mb-12">
+            <!-- Sidebar: Analysis -->
+            <div class="lg:col-span-4 space-y-6">
+                <div class="glass-card p-8">
+                    <h2 class="text-xl font-bold mb-6 flex items-center gap-2 text-white">
+                        📊 Language Balance
+                    </h2>
+                    <div class="chart-container">
+                        <canvas id="abilityChart"></canvas>
+                    </div>
+                    <div class="mt-8 space-y-3">
+                        <div class="flex justify-between text-sm">
+                            <span class="text-gray-400">Fluency (유창성/자신감)</span>
+                            <span class="font-bold text-green-400">92%</span>
+                        </div>
+                        <div class="w-full bg-gray-700 h-2 rounded-full overflow-hidden">
+                            <div class="bg-green-400 h-full w-[92%]"></div>
+                        </div>
+                        <div class="flex justify-between text-sm">
+                            <span class="text-gray-400">Grammar (시제 정확성)</span>
+                            <span class="font-bold text-pink-400">65%</span>
+                        </div>
+                        <div class="w-full bg-gray-700 h-2 rounded-full overflow-hidden">
+                            <div class="bg-pink-400 h-full w-[65%]"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="p-6 rounded-2xl bg-gray-800 text-white shadow-xl border border-gray-700">
+                    <h3 class="font-bold text-yellow-400 mb-3">🎬 Pro Tip for Cinephiles</h3>
+                    <p class="text-sm leading-relaxed text-gray-300">
+                        영화가 "어렵다"고 말하고 싶을 때 단순히 "hard"보다는 <br>
+                        <span class="text-white font-semibold italic">"It's quite dense and multi-layered."</span><br>
+                        라고 해보세요. 영화의 깊이를 훨씬 잘 전달합니다.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Main Interactive Content -->
+            <div class="lg:col-span-8 space-y-6">
+                <!-- Navigation -->
+                <nav class="flex space-x-8 border-b border-gray-700 text-gray-500 text-sm font-bold uppercase tracking-widest">
+                    <button onclick="window.showSection('corrections')" id="btn-corrections" class="pb-4 tab-active">실전 교정</button>
+                    <button onclick="window.showSection('vocabulary')" id="btn-vocabulary" class="pb-4 hover:text-gray-300">일상 표현 (저장소)</button>
+                    <button onclick="window.showSection('resources')" id="btn-resources" class="pb-4 hover:text-gray-300">섀도잉 리소스</button>
+                </nav>
+
+                <!-- Section: Corrections -->
+                <div id="sec-corrections" class="space-y-4 fade-in">
+                    <div class="glass-card p-6 flex flex-col md:flex-row gap-4 items-center">
+                        <div class="flex-1">
+                            <h4 class="text-xs font-bold text-red-400 mb-1">COMMON MISTAKE #1</h4>
+                            <p class="text-gray-500 line-through text-sm">I didn't thought about that.</p>
+                            <p class="text-gray-100 font-bold">I didn't <span class="text-red-400">think</span> about that.</p>
+                        </div>
+                        <div class="flex-1 border-l border-gray-600 pl-4">
+                            <h4 class="text-xs font-bold text-blue-400 mb-1">COMMON MISTAKE #2</h4>
+                            <p class="text-gray-500 line-through text-sm">I can more focus on the story.</p>
+                            <p class="text-gray-100 font-bold">I can <span class="text-blue-400">focus more</span> on the story.</p>
+                        </div>
+                    </div>
+                    <div class="glass-card p-6">
+                        <h4 class="text-xs font-bold text-green-400 mb-1">PROFESSIONAL EXPRESSION</h4>
+                        <p class="text-gray-500 line-through text-sm">I have two characters for working and real me.</p>
+                        <p class="text-gray-100 font-bold text-lg italic">"I have two sides to my personality—one at work and one in my personal life."</p>
+                    </div>
+                </div>
+
+                <!-- Section: Vocabulary (Firebase Dynamic Data) -->
+                <div id="sec-vocabulary" class="hidden grid grid-cols-1 md:grid-cols-2 gap-4 fade-in">
+                    <!-- Data will be injected here via Firebase -->
+                    <div class="col-span-2 text-center text-gray-500 py-10">
+                        클라우드 데이터를 불러오는 중입니다... ☁️
+                    </div>
+                </div>
+
+                <!-- Section: Resources -->
+                <div id="sec-resources" class="hidden space-y-4 fade-in">
+                    <p class="text-sm text-gray-400 mb-4 italic">Ellie님이 좋아하는 영화인들의 인터뷰입니다. 대화의 리듬과 단어 덩어리를 눈여겨보세요.</p>
+                    <a href="https://www.youtube.com/results?search_query=Yorgos+Lanthimos+interview" target="_blank" class="btn-link flex items-center justify-between p-6 glass-card">
+                        <div>
+                            <h5 class="font-bold text-gray-100">Yorgos Lanthimos Interview</h5>
+                            <p class="text-sm text-gray-400 mt-1">영화 'Poor Things' 감독의 독창적 관점 섀도잉</p>
+                        </div>
+                        <span class="text-2xl text-pink-500">▶</span>
+                    </a>
+                    <a href="https://www.youtube.com/results?search_query=Cate+Blanchett+on+cinema+interview" target="_blank" class="btn-link flex items-center justify-between p-6 glass-card">
+                        <div>
+                            <h5 class="font-bold text-gray-100">Actors on Actors: Cate Blanchett</h5>
+                            <p class="text-sm text-gray-400 mt-1">거장 배우들이 영화 연기와 산업에 대해 나누는 깊은 대화</p>
+                        </div>
+                        <span class="text-2xl text-pink-500">▶</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Practice Ground -->
+        <section class="glass-card p-10 mb-12 bg-opacity-30 border-none">
+            <h2 class="text-2xl font-bold mb-8 text-center text-white">Ready for the Next Chapter?</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Drill 1 -->
+                <div class="space-y-4">
+                    <h4 class="font-bold text-gray-500 text-xs uppercase tracking-tighter">Daily Drill: Tense Control</h4>
+                    <div class="bg-gray-800 p-5 rounded-xl border border-gray-700 h-full flex flex-col justify-between">
+                        <div>
+                            <p class="text-xs text-gray-400 mb-2 italic">"어제 그 영화를 보지 않았어요."</p>
+                            <p class="text-lg font-bold text-gray-200">I <span class="underline decoration-pink-500">didn't watch</span> that movie yesterday.</p>
+                        </div>
+                        <p class="text-xs text-gray-400 mt-4 bg-gray-900 p-2 rounded">💡 'didn't' 뒤에는 무조건 동사원형!</p>
+                    </div>
+                </div>
+                <!-- Drill 2 -->
+                <div class="space-y-4">
+                    <h4 class="font-bold text-gray-500 text-xs uppercase tracking-tighter">Daily Drill: Expressing Habits</h4>
+                    <div class="bg-gray-800 p-5 rounded-xl border border-gray-700 h-full flex flex-col justify-between">
+                        <div>
+                            <p class="text-xs text-gray-400 mb-2 italic">"그건 제 오래된 습관이에요."</p>
+                            <p class="text-lg font-bold text-gray-200">This is a <span class="underline decoration-indigo-500">very old habit of mine</span>.</p>
+                        </div>
+                        <p class="text-xs text-gray-400 mt-4 bg-gray-900 p-2 rounded">💡 'long habit that I have'보다 세련된 표현</p>
+                    </div>
+                </div>
+                <!-- Drill 3 -->
+                <div class="space-y-4">
+                    <h4 class="font-bold text-gray-500 text-xs uppercase tracking-tighter">Daily Drill: Natural Phrasing</h4>
+                    <div class="bg-gray-800 p-5 rounded-xl border border-gray-700 h-full flex flex-col justify-between">
+                        <div>
+                            <p class="text-xs text-gray-400 mb-2 italic">"요즘 일이 바빠서 루틴이 엉망이에요."</p>
+                            <p class="text-lg font-bold text-gray-200">My routine is messed up because <span class="underline decoration-green-500">I'm so busy at work</span>.</p>
+                        </div>
+                        <p class="text-xs text-gray-400 mt-4 bg-gray-900 p-2 rounded">💡 'my work is busy' 대신 'I am busy' 사용</p>
+                    </div>
+                </div>
+                <!-- Drill 4 -->
+                <div class="space-y-4">
+                    <h4 class="font-bold text-gray-500 text-xs uppercase tracking-tighter">Daily Drill: Past Routines</h4>
+                    <div class="bg-gray-800 p-5 rounded-xl border border-gray-700 h-full flex flex-col justify-between">
+                        <div>
+                            <p class="text-xs text-gray-400 mb-2 italic">"서너 달 전 제 루틴은 일찍 일어나는 거였어요."</p>
+                            <p class="text-lg font-bold text-gray-200">Months ago, my routine <span class="underline decoration-blue-500">was to wake up</span> early.</p>
+                        </div>
+                        <p class="text-xs text-gray-400 mt-4 bg-gray-900 p-2 rounded">💡 과거 루틴은 동사 시제(was)로 명확히!</p>
+                    </div>
+                </div>
+                <!-- Drill 5 -->
+                <div class="space-y-4">
+                    <h4 class="font-bold text-gray-500 text-xs uppercase tracking-tighter">Daily Drill: Uncertainty</h4>
+                    <div class="bg-gray-800 p-5 rounded-xl border border-gray-700 h-full flex flex-col justify-between">
+                        <div>
+                            <p class="text-xs text-gray-400 mb-2 italic">"넷플릭스에서 봤는지 기억이 안 나요."</p>
+                            <p class="text-lg font-bold text-gray-200">I cannot remember <span class="underline decoration-orange-500">if I watched</span> it.</p>
+                        </div>
+                        <p class="text-xs text-gray-400 mt-4 bg-gray-900 p-2 rounded">💡 불확실할 때는 'if (~인지 아닌지)' 활용</p>
+                    </div>
+                </div>
+                <!-- Drill 6 -->
+                <div class="space-y-4">
+                    <h4 class="font-bold text-gray-500 text-xs uppercase tracking-tighter">Daily Drill: Describing Time</h4>
+                    <div class="bg-gray-800 p-5 rounded-xl border border-gray-700 h-full flex flex-col justify-between">
+                        <div>
+                            <p class="text-xs text-gray-400 mb-2 italic">"오래 안 걸려요. 한 40분쯤?"</p>
+                            <p class="text-lg font-bold text-gray-200">It's <span class="underline decoration-teal-500">not that long</span>, maybe 40 minutes.</p>
+                        </div>
+                        <p class="text-xs text-gray-400 mt-4 bg-gray-900 p-2 rounded">💡 'not that much long' 보다 자연스러운 원어민 표현</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="text-center py-10 border-t border-gray-800">
+            <p class="text-gray-500 text-sm">© 2026 Ellie's Language Partner. Cloud Connected. Keep your eyes on the screen, and your ears open. 🎬</p>
+        </footer>
+
+        <!-- Floating Add Button -->
+        <button onclick="window.openModal()" class="fixed bottom-10 right-10 bg-pink-600 hover:bg-pink-700 text-white w-14 h-14 rounded-full shadow-2xl flex items-center justify-center text-3xl transition-transform transform hover:scale-110 z-40">
+            +
+        </button>
+
+        <!-- Add Vocabulary Modal -->
+        <div id="add-modal" class="fixed inset-0 z-50 hidden flex items-center justify-center p-4">
+            <div class="glass-card w-full max-w-md p-6 relative">
+                <button onclick="window.closeModal()" class="absolute top-4 right-4 text-gray-400 hover:text-white text-xl">✕</button>
+                <h3 class="text-2xl font-bold mb-6 text-white">새로운 표현 추가</h3>
+                <div class="space-y-4">
+                    <div>
+                        <label class="block text-sm text-gray-400 mb-1">분류 태그 (예: Habit, Preference)</label>
+                        <input type="text" id="vocab-tag" class="w-full bg-gray-800 text-white border border-gray-700 rounded-lg p-3 focus:outline-none focus:border-pink-500" placeholder="태그 입력">
+                    </div>
+                    <div>
+                        <label class="block text-sm text-gray-400 mb-1">영어 표현</label>
+                        <input type="text" id="vocab-phrase" class="w-full bg-gray-800 text-white border border-gray-700 rounded-lg p-3 focus:outline-none focus:border-pink-500" placeholder="예: Low tolerance">
+                    </div>
+                    <div>
+                        <label class="block text-sm text-gray-400 mb-1">한국어 뜻</label>
+                        <input type="text" id="vocab-meaning" class="w-full bg-gray-800 text-white border border-gray-700 rounded-lg p-3 focus:outline-none focus:border-pink-500" placeholder="예: ~에 내성이 없다">
+                    </div>
+                    <div>
+                        <label class="block text-sm text-gray-400 mb-1">예문</label>
+                        <textarea id="vocab-example" rows="2" class="w-full bg-gray-800 text-white border border-gray-700 rounded-lg p-3 focus:outline-none focus:border-pink-500" placeholder="I have a low tolerance for alcohol."></textarea>
+                    </div>
+                    <button onclick="window.saveVocab()" class="w-full bg-pink-600 hover:bg-pink-700 text-white font-bold py-3 rounded-lg mt-4 transition-colors">
+                        저장하기
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Global UI Functions
+        window.showSection = function(sectionId) {
+            const sections = ['corrections', 'vocabulary', 'resources'];
+            sections.forEach(s => {
+                document.getElementById(`sec-${s}`).classList.add('hidden');
+                document.getElementById(`btn-${s}`).classList.remove('tab-active');
+                document.getElementById(`btn-${s}`).classList.add('text-gray-500');
+            });
+            document.getElementById(`sec-${sectionId}`).classList.remove('hidden');
+            document.getElementById(`btn-${sectionId}`).classList.add('tab-active');
+            document.getElementById(`btn-${sectionId}`).classList.remove('text-gray-500');
+        };
+
+        window.openModal = function() {
+            document.getElementById('add-modal').classList.remove('hidden');
+        };
+
+        window.closeModal = function() {
+            document.getElementById('add-modal').classList.add('hidden');
+            document.getElementById('vocab-tag').value = '';
+            document.getElementById('vocab-phrase').value = '';
+            document.getElementById('vocab-meaning').value = '';
+            document.getElementById('vocab-example').value = '';
+        };
+
+        // 브라우저 내부 저장소(Local Storage) 설정 - 서버 없이 자동 연동!
+        const colors = ['blue', 'pink', 'purple', 'green', 'yellow'];
+        const STORAGE_KEY = 'ellie_vocab_data';
+
+        function initApp() {
+            seedInitialDataIfNeeded();
+            renderVocabulary();
+        }
+
+        function seedInitialDataIfNeeded() {
+            const existingData = localStorage.getItem(STORAGE_KEY);
+            if (!existingData) {
+                const defaultData = [
+                    { id: Date.now().toString() + '1', tag: 'Tolerance', color: 'blue', phrase: 'Low tolerance (for ~)', meaning: '~에 약하다, 내성이 없다', example: 'I have a low tolerance for alcohol.', createdAt: Date.now() },
+                    { id: Date.now().toString() + '2', tag: 'Preference', color: 'pink', phrase: 'Not really my thing', meaning: '제 취향은 아니에요 / 굳이 하진 않아요', example: 'Eating noisy snacks in the theater is not really my thing.', createdAt: Date.now() + 1 },
+                    { id: Date.now().toString() + '3', tag: 'Personality', color: 'purple', phrase: 'Two sides to my personality', meaning: '제 성격의 두 가지 측면 (반전 매력)', example: 'I have two sides to my personality—one at work and one in private.', createdAt: Date.now() + 2 },
+                    { id: Date.now().toString() + '4', tag: 'Habit', color: 'green', phrase: 'A very old habit of mine', meaning: '저의 아주 오래된 습관입니다', example: 'Writing a diary twice a day is a very old habit of mine.', createdAt: Date.now() + 3 }
+                ];
+                localStorage.setItem(STORAGE_KEY, JSON.stringify(defaultData));
+            }
+        }
+
+        function getVocabData() {
+            const data = localStorage.getItem(STORAGE_KEY);
+            return data ? JSON.parse(data) : [];
+        }
+
+        function renderVocabulary() {
+            const container = document.getElementById('sec-vocabulary');
+            container.innerHTML = '';
+            
+            const items = getVocabData();
+            
+            if (items.length === 0) {
+                container.innerHTML = `<div class="col-span-2 text-center text-gray-500 py-10">아직 저장된 단어가 없습니다. 우측 하단의 + 버튼을 눌러 추가해보세요!</div>`;
+                return;
+            }
+
+            // 최신순 정렬
+            items.sort((a, b) => b.createdAt - a.createdAt);
+
+            items.forEach(item => {
+                const colorClasses = {
+                    'blue': 'bg-blue-900 text-blue-300',
+                    'pink': 'bg-pink-900 text-pink-300',
+                    'purple': 'bg-purple-900 text-purple-300',
+                    'green': 'bg-green-900 text-green-300',
+                    'yellow': 'bg-yellow-900 text-yellow-300'
+                };
+                const badgeClass = colorClasses[item.color] || colorClasses['blue'];
+
+                const cardHTML = `
+                    <div class="p-5 glass-card relative group transition-all duration-300">
+                        <span class="text-xs font-bold ${badgeClass} px-2 py-1 rounded-md border border-gray-600">${escapeHtml(item.tag)}</span>
+                        <button onclick="window.deleteVocab('${item.id}')" class="absolute top-4 right-4 text-gray-500 hover:text-red-400 opacity-0 group-hover:opacity-100 transition-opacity" title="삭제">
+                            🗑️
+                        </button>
+                        <h5 class="font-bold mt-3 text-white text-lg">${escapeHtml(item.phrase)}</h5>
+                        <p class="text-sm text-gray-400 italic mb-3">${escapeHtml(item.meaning)}</p>
+                        <div class="bg-gray-800 p-3 rounded-lg border border-gray-700">
+                            <p class="text-xs text-gray-300 leading-relaxed">"${escapeHtml(item.example)}"</p>
+                        </div>
+                    </div>
+                `;
+                container.innerHTML += cardHTML;
+            });
+        }
+
+        window.saveVocab = function() {
+            const tag = document.getElementById('vocab-tag').value || 'General';
+            const phrase = document.getElementById('vocab-phrase').value;
+            const meaning = document.getElementById('vocab-meaning').value;
+            const example = document.getElementById('vocab-example').value;
+
+            if (!phrase) return; // 빈 값 방지
+
+            const randomColor = colors[Math.floor(Math.random() * colors.length)];
+            const newItem = {
+                id: Date.now().toString(),
+                tag: tag,
+                color: randomColor,
+                phrase: phrase,
+                meaning: meaning,
+                example: example,
+                createdAt: Date.now()
+            };
+
+            const items = getVocabData();
+            items.push(newItem);
+            localStorage.setItem(STORAGE_KEY, JSON.stringify(items));
+            
+            window.closeModal();
+            renderVocabulary(); // 화면 새로고침
+        };
+
+        window.deleteVocab = function(id) {
+            let items = getVocabData();
+            items = items.filter(item => item.id !== id);
+            localStorage.setItem(STORAGE_KEY, JSON.stringify(items));
+            renderVocabulary(); // 화면 새로고침
+        };
+
+        // 보안(XSS 방지) 유틸리티
+        function escapeHtml(unsafe) {
+            return (unsafe || '').toString()
+                 .replace(/&/g, "&amp;")
+                 .replace(/</g, "&lt;")
+                 .replace(/>/g, "&gt;")
+                 .replace(/"/g, "&quot;")
+                 .replace(/'/g, "&#039;");
+        }
+
+        // 앱 초기화 실행
+        initApp();
+
+        // Chart Initialization (Remains identical)
+        const ctx = document.getElementById('abilityChart').getContext('2d');
+        new Chart(ctx, {
+            type: 'radar',
+            data: {
+                labels: ['시제 정확성', '어순 배치', '어휘 다양성', '발음', '자신감', '필러 활용'],
+                datasets: [{
+                    label: 'Score',
+                    data: [65, 70, 78, 95, 92, 60],
+                    backgroundColor: 'rgba(232, 67, 147, 0.2)', // Pink transparent
+                    borderColor: 'rgba(232, 67, 147, 1)',
+                    borderWidth: 2,
+                    pointBackgroundColor: '#fff',
+                    pointBorderColor: 'rgba(232, 67, 147, 1)',
+                }]
+            },
+            options: {
+                maintainAspectRatio: false,
+                scales: {
+                    r: {
+                        grid: { color: 'rgba(255, 255, 255, 0.1)' },
+                        angleLines: { color: 'rgba(255, 255, 255, 0.1)' },
+                        pointLabels: { color: '#9ca3af', font: { size: 11 } },
+                        suggestedMin: 0,
+                        suggestedMax: 100,
+                        ticks: { display: false }
+                    }
+                },
+                plugins: {
+                    legend: { display: false }
+                }
+            }
+        });
+    </script>
+</body>
+</html>
