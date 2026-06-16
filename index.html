@@ -21,14 +21,13 @@
 </head>
 <body class="p-4 md:p-10">
     <div class="max-w-6xl mx-auto">
-        <!-- Header -->
         <header class="mb-12 border-l-8 border-pink-600 pl-6">
             <h1 class="text-4xl font-extrabold tracking-tight text-white">Ellie's English Dashboard</h1>
             <p class="text-lg text-gray-400 mt-2 font-medium italic">"It's never too late to be whoever you want to be." - The Curious Case of Benjamin Button</p>
         </header>
 
         <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 mb-12">
-            <!-- Sidebar: Analysis & Tip -->
+            <!-- Sidebar -->
             <div class="lg:col-span-4 space-y-6">
                 <div class="glass-card p-8">
                     <h2 class="text-xl font-bold mb-6 text-white">📊 Language Balance</h2>
@@ -51,19 +50,19 @@
             <div class="lg:col-span-8 space-y-6">
                 <nav class="flex space-x-8 border-b border-gray-700 text-gray-500 text-sm font-bold uppercase tracking-widest">
                     <button onclick="window.showSection('corrections')" id="btn-corrections" class="pb-4 tab-active">실전 교정</button>
-                    <button onclick="window.showSection('vocabulary')" id="btn-vocabulary" class="pb-4 hover:text-gray-300">일상 표현</button>
-                    <button onclick="window.showSection('resources')" id="btn-resources" class="pb-4 hover:text-gray-300">섀도잉 리소스</button>
-                    <button onclick="window.showSection('fillers')" id="btn-fillers" class="pb-4 hover:text-gray-300">필러 표현</button>
+                    <button onclick="window.showSection('vocabulary')" id="btn-vocabulary" class="pb-4">일상 표현</button>
+                    <button onclick="window.showSection('resources')" id="btn-resources" class="pb-4">섀도잉 리소스</button>
+                    <button onclick="window.showSection('fillers')" id="btn-fillers" class="pb-4">필러 표현</button>
                 </nav>
 
                 <div id="sec-corrections" class="space-y-4 fade-in">
                     <div class="glass-card p-6 flex flex-col md:flex-row gap-4">
-                        <div class="flex-1"><h4 class="text-xs font-bold text-red-400 mb-1">COMMON MISTAKE #1 (과거 부정)</h4><p class="text-gray-500 line-through text-sm">I didn't thought about that.</p><p class="text-gray-100 font-bold">I didn't <span class="text-red-400">think</span> about that.</p></div>
-                        <div class="flex-1 border-l border-gray-600 pl-4"><h4 class="text-xs font-bold text-blue-400 mb-1">COMMON MISTAKE #2 (조동사 부정)</h4><p class="text-gray-500 line-through text-sm">I'm not drive.</p><p class="text-gray-100 font-bold">I <span class="text-blue-400">don't</span> drive.</p></div>
+                        <div class="flex-1"><h4 class="text-xs font-bold text-red-400 mb-1">COMMON MISTAKE #1</h4><p class="text-gray-500 line-through text-sm">I didn't thought about that.</p><p class="text-gray-100 font-bold">I didn't <span class="text-red-400">think</span> about that.</p></div>
+                        <div class="flex-1 border-l border-gray-600 pl-4"><h4 class="text-xs font-bold text-blue-400 mb-1">COMMON MISTAKE #2</h4><p class="text-gray-500 line-through text-sm">I'm not drive.</p><p class="text-gray-100 font-bold">I <span class="text-blue-400">don't</span> drive.</p></div>
                     </div>
                     <div class="glass-card p-6 flex flex-col md:flex-row gap-4">
-                        <div class="flex-1"><h4 class="text-xs font-bold text-yellow-400 mb-1">COMMON MISTAKE #3 (과거 부정)</h4><p class="text-gray-500 line-through text-sm">I don't slept.</p><p class="text-gray-100 font-bold">I didn't <span class="text-yellow-400">sleep</span>.</p></div>
-                        <div class="flex-1 border-l border-gray-600 pl-4"><h4 class="text-xs font-bold text-green-400 mb-1">COMMON MISTAKE #4 (명사/형용사)</h4><p class="text-gray-500 line-through text-sm">My routine is mess.</p><p class="text-gray-100 font-bold">My routine is <span class="text-green-400">messed up</span>.</p></div>
+                        <div class="flex-1"><h4 class="text-xs font-bold text-yellow-400 mb-1">COMMON MISTAKE #3</h4><p class="text-gray-500 line-through text-sm">I don't slept.</p><p class="text-gray-100 font-bold">I didn't <span class="text-yellow-400">sleep</span>.</p></div>
+                        <div class="flex-1 border-l border-gray-600 pl-4"><h4 class="text-xs font-bold text-green-400 mb-1">COMMON MISTAKE #4</h4><p class="text-gray-500 line-through text-sm">My routine is mess.</p><p class="text-gray-100 font-bold">My routine is <span class="text-green-400">messed up</span>.</p></div>
                     </div>
                 </div>
 
@@ -92,38 +91,28 @@
             </div>
         </div>
 
-        <!-- Practice Section -->
         <section class="glass-card p-10 mb-12">
             <details open>
                 <summary class="text-2xl font-bold mb-8 text-center text-white cursor-pointer hover:text-pink-500">Ready for the Next Chapter? ▼</summary>
-                
                 <div class="mb-8 p-6 bg-gray-800 rounded-xl border border-pink-500/20">
-                    <h3 class="font-bold text-pink-400 mb-4 text-xl">💡 상세 문법 가이드: Be vs Do 부정형 정복하기</h3>
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 text-sm">
-                        <div class="bg-gray-900 p-5 rounded-lg border-l-4 border-blue-500">
-                            <p class="font-bold text-blue-400 mb-2">Be동사 부정: "상태"를 말할 때</p>
-                            <p class="text-gray-300">Be동사는 스스로 부정(not)을 붙일 수 있는 '힘'이 있습니다. 주로 상태, 기분, 위치를 설명합니다.</p>
-                            <div class="mt-3 bg-gray-800 p-2 rounded">예: I <span class="text-blue-400 font-bold">am not</span> busy. (바쁜 상태가 아님)</div>
-                        </div>
-                        <div class="bg-gray-900 p-5 rounded-lg border-l-4 border-rose-500">
-                            <p class="font-bold text-rose-400 mb-2">Do동사 부정: "동작"을 말할 때</p>
-                            <p class="text-gray-300">일반동사는 스스로 부정하지 못합니다. 그래서 도와주는 조동사 'do/does/did'가 대신 나서야 합니다.</p>
-                            <div class="mt-3 bg-gray-800 p-2 rounded">예: I <span class="text-rose-400 font-bold">didn't</span> sleep. (잔 동작을 안 함)</div>
-                        </div>
-                    </div>
+                    <h3 class="font-bold text-pink-400 mb-2">💡 문법 포인트: Be vs Do 부정형</h3>
+                    <p class="text-sm text-gray-300">상태(Be)를 부정할 땐 <b>'am/are/is not'</b>, 동작(Do)을 부정할 땐 <b>'do/does/did not'</b>을 씁니다.</p>
                 </div>
-
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                    <!-- 6 Drills -->
-                    <div class="bg-gray-800 p-5 rounded-xl border border-gray-700 h-full"><p class="text-xs text-gray-400 italic">"스토리에 더 집중할 수 있어요."</p><p class="text-lg font-bold">I can <span class="underline decoration-pink-500">focus more</span> on the story.</p><p class="text-xs text-gray-400 mt-2">💡 'more'는 동사 뒤에!</p></div>
-                    <div class="bg-gray-800 p-5 rounded-xl border border-gray-700 h-full"><p class="text-xs text-gray-400 italic">"넷플릭스에서 봤는지 기억이 안 나요."</p><p class="text-lg font-bold">I cannot remember <span class="underline decoration-indigo-500">if I watched</span> a movie.</p><p class="text-xs text-gray-400 mt-2">💡 불확실할 땐 'if' 활용!</p></div>
-                    <div class="bg-gray-800 p-5 rounded-xl border border-gray-700 h-full"><p class="text-xs text-gray-400 italic">"요즘 일이 바빠서 루틴이 엉망이에요."</p><p class="text-lg font-bold">...<span class="underline decoration-green-500">I'm so busy at work</span>.</p><p class="text-xs text-gray-400 mt-2">💡 '일이 바쁘다'보다는 '내가 직장에서 바쁘다'</p></div>
-                    <div class="bg-gray-800 p-5 rounded-xl border border-gray-700 h-full"><p class="text-xs text-gray-400 italic">"서너 달 전 제 루틴은 일찍 일어나는 거였어요."</p><p class="text-lg font-bold">...<span class="underline decoration-blue-500">was to wake up</span> early.</p><p class="text-xs text-gray-400 mt-2">💡 과거 루틴은 be동사 과거(was) + to!</p></div>
-                    <div class="bg-gray-800 p-5 rounded-xl border border-gray-700 h-full"><p class="text-xs text-gray-400 italic">"오래 안 걸려요. 한 40분쯤?"</p><p class="text-lg font-bold">It's <span class="underline decoration-orange-500">not that long</span>.</p><p class="text-xs text-gray-400 mt-2">💡 'not that long'으로 심플하게!</p></div>
-                    <div class="bg-gray-800 p-5 rounded-xl border border-gray-700 h-full"><p class="text-xs text-gray-400 italic">"저는 영화 보는 것을 좋아해요."</p><p class="text-lg font-bold">I like to watch <span class="underline decoration-teal-500">movies</span>.</p><p class="text-xs text-gray-400 mt-2">💡 일반 취향은 항상 복수형!</p></div>
+                    <div class="bg-gray-800 p-5 rounded-xl border border-gray-700"><p class="text-xs text-gray-400 italic">"스토리에 더 집중할 수 있어요."</p><p class="text-lg font-bold">I can <span class="underline">focus more</span> on the story.</p><p class="text-xs text-gray-400 mt-2">💡 'more'는 동사 뒤에!</p></div>
+                    <div class="bg-gray-800 p-5 rounded-xl border border-gray-700"><p class="text-xs text-gray-400 italic">"넷플릭스에서 봤는지 기억이 안 나요."</p><p class="text-lg font-bold">I cannot remember <span class="underline">if I watched</span> it.</p><p class="text-xs text-gray-400 mt-2">💡 불확실할 땐 'if' 활용!</p></div>
+                    <div class="bg-gray-800 p-5 rounded-xl border border-gray-700"><p class="text-xs text-gray-400 italic">"요즘 일이 바빠서 루틴이 엉망이에요."</p><p class="text-lg font-bold">...<span class="underline">I'm so busy at work</span>.</p><p class="text-xs text-gray-400 mt-2">💡 '일이 바쁘다'보다는 '내가 직장에서 바쁘다'</p></div>
+                    <div class="bg-gray-800 p-5 rounded-xl border border-gray-700"><p class="text-xs text-gray-400 italic">"서너 달 전 제 루틴은 일찍 일어나는 거였어요."</p><p class="text-lg font-bold">...<span class="underline">was to wake up</span> early.</p><p class="text-xs text-gray-400 mt-2">💡 과거 루틴은 be동사 과거(was) + to!</p></div>
+                    <div class="bg-gray-800 p-5 rounded-xl border border-gray-700"><p class="text-xs text-gray-400 italic">"오래 안 걸려요. 한 40분쯤?"</p><p class="text-lg font-bold">It's <span class="underline">not that long</span>.</p><p class="text-xs text-gray-400 mt-2">💡 'not that long'으로 심플하게!</p></div>
+                    <div class="bg-gray-800 p-5 rounded-xl border border-gray-700"><p class="text-xs text-gray-400 italic">"저는 영화 보는 것을 좋아해요."</p><p class="text-lg font-bold">I like to watch <span class="underline">movies</span>.</p><p class="text-xs text-gray-400 mt-2">💡 일반 취향은 항상 복수형!</p></div>
                 </div>
             </details>
         </section>
+
+        <footer class="text-center py-10 border-t border-gray-800">
+            <svg class="w-8 h-8 mx-auto text-gray-500 mb-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 4v16M17 4v16M3 8h18M3 16h18"></path></svg>
+            <p class="text-gray-500 text-sm">© 2026 Ellie's Language Partner. Cloud Connected. Keep your eyes on the screen, and your ears open. 🎬</p>
+        </footer>
     </div>
     
     <script>
@@ -138,11 +127,10 @@
             type: 'radar', 
             data: { 
                 labels: ['시제', '어순', '어휘', '발음', '자신감', '필러'], 
-                datasets: [{ data: [65, 70, 78, 95, 92, 60], backgroundColor: 'rgba(232, 67, 147, 0.2)', borderColor: '#e84393' }] 
+                datasets: [{ data: [65, 70, 78, 95, 92, 60], backgroundColor: 'rgba(232, 67, 147, 0.2)', borderColor: '#e84393', borderWidth: 2 }] 
             }, 
             options: { plugins: { legend: { display: false } }, scales: { r: { min: 0, max: 100, ticks: { display: false }, grid: { color: 'rgba(255, 255, 255, 0.1)' } } } } 
         });
     </script>
 </body>
 </html>
-```eof
