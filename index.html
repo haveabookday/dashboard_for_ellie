@@ -30,6 +30,27 @@
                 <div class="glass-card p-8">
                     <h2 class="text-xl font-bold mb-6 text-white">📊 Language Balance</h2>
                     <div class="chart-container"><canvas id="abilityChart"></canvas></div>
+                    <!-- 프로그레스 바 추가 -->
+                    <div class="mt-8 space-y-4">
+                        <div>
+                            <div class="flex justify-between text-sm mb-1 text-gray-400">
+                                <span>Fluency (유창성/자신감)</span>
+                                <span class="font-bold text-green-400">92%</span>
+                            </div>
+                            <div class="w-full bg-gray-700 h-2 rounded-full">
+                                <div class="bg-green-400 h-2 rounded-full" style="width: 92%"></div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="flex justify-between text-sm mb-1 text-gray-400">
+                                <span>Grammar (시제 정확성)</span>
+                                <span class="font-bold text-pink-400">65%</span>
+                            </div>
+                            <div class="w-full bg-gray-700 h-2 rounded-full">
+                                <div class="bg-pink-400 h-2 rounded-full" style="width: 65%"></div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
                 <div class="p-6 rounded-2xl bg-gray-800 text-white shadow-xl border border-gray-700">
                     <h3 class="font-bold text-yellow-400 mb-3">🎬 Pro Tip for Cinephiles</h3>
