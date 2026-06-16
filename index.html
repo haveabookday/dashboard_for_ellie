@@ -116,7 +116,7 @@
                 <!-- Navigation -->
                 <nav class="flex space-x-8 border-b border-gray-700 text-gray-500 text-sm font-bold uppercase tracking-widest">
                     <button onclick="window.showSection('corrections')" id="btn-corrections" class="pb-4 tab-active">실전 교정</button>
-                    <button onclick="window.showSection('vocabulary')" id="btn-vocabulary" class="pb-4 hover:text-gray-300">일상 표현 (저장소)</button>
+                    <button onclick="window.showSection('vocabulary')" id="btn-vocabulary" class="pb-4 hover:text-gray-300">일상 표현</button>
                     <button onclick="window.showSection('resources')" id="btn-resources" class="pb-4 hover:text-gray-300">섀도잉 리소스</button>
                 </nav>
 
@@ -124,24 +124,32 @@
                 <div id="sec-corrections" class="space-y-4 fade-in">
                     <div class="glass-card p-6 flex flex-col md:flex-row gap-4 items-center">
                         <div class="flex-1">
-                            <h4 class="text-xs font-bold text-red-400 mb-1">COMMON MISTAKE #1</h4>
+                            <h4 class="text-xs font-bold text-red-400 mb-1">COMMON MISTAKE #1 (과거 부정)</h4>
                             <p class="text-gray-500 line-through text-sm">I didn't thought about that.</p>
                             <p class="text-gray-100 font-bold">I didn't <span class="text-red-400">think</span> about that.</p>
                         </div>
                         <div class="flex-1 border-l border-gray-600 pl-4">
-                            <h4 class="text-xs font-bold text-blue-400 mb-1">COMMON MISTAKE #2</h4>
-                            <p class="text-gray-500 line-through text-sm">I can more focus on the story.</p>
-                            <p class="text-gray-100 font-bold">I can <span class="text-blue-400">focus more</span> on the story.</p>
+                            <h4 class="text-xs font-bold text-blue-400 mb-1">COMMON MISTAKE #2 (조동사 부정)</h4>
+                            <p class="text-gray-500 line-through text-sm">I'm not drive.</p>
+                            <p class="text-gray-100 font-bold">I <span class="text-blue-400">don't</span> drive.</p>
                         </div>
                     </div>
-                    <div class="glass-card p-6">
-                        <h4 class="text-xs font-bold text-green-400 mb-1">PROFESSIONAL EXPRESSION</h4>
-                        <p class="text-gray-500 line-through text-sm">I have two characters for working and real me.</p>
-                        <p class="text-gray-100 font-bold text-lg italic">"I have two sides to my personality—one at work and one in my personal life."</p>
+                    
+                    <div class="glass-card p-6 flex flex-col md:flex-row gap-4 items-center">
+                        <div class="flex-1">
+                            <h4 class="text-xs font-bold text-yellow-400 mb-1">COMMON MISTAKE #3 (과거 부정)</h4>
+                            <p class="text-gray-500 line-through text-sm">I don't slept.</p>
+                            <p class="text-gray-100 font-bold">I didn't <span class="text-yellow-400">sleep</span>.</p>
+                        </div>
+                        <div class="flex-1 border-l border-gray-600 pl-4">
+                            <h4 class="text-xs font-bold text-green-400 mb-1">COMMON MISTAKE #4 (명사/형용사 혼동)</h4>
+                            <p class="text-gray-500 line-through text-sm">My routine is mess.</p>
+                            <p class="text-gray-100 font-bold">My routine is <span class="text-green-400">messed up</span>. (or a mess)</p>
+                        </div>
                     </div>
                 </div>
 
-                <!-- Section: Vocabulary (Firebase Dynamic Data) -->
+                <!-- Section: Vocabulary (Local Storage Data) -->
                 <div id="sec-vocabulary" class="hidden grid grid-cols-1 md:grid-cols-2 gap-4 fade-in">
                     <!-- Data will be injected here via Firebase -->
                     <div class="col-span-2 text-center text-gray-500 py-10">
@@ -151,20 +159,38 @@
 
                 <!-- Section: Resources -->
                 <div id="sec-resources" class="hidden space-y-4 fade-in">
-                    <p class="text-sm text-gray-400 mb-4 italic">Ellie님이 좋아하는 영화인들의 인터뷰입니다. 대화의 리듬과 단어 덩어리를 눈여겨보세요.</p>
-                    <a href="https://www.youtube.com/results?search_query=Yorgos+Lanthimos+interview" target="_blank" class="btn-link flex items-center justify-between p-6 glass-card">
+                    <p class="text-sm text-gray-400 mb-4 italic">Ellie님이 좋아하는 영화인들의 인터뷰입니다. 그들의 억양과 관점을 표현하는 방식을 섀도잉 해보세요.</p>
+                    
+                    <a href="https://www.youtube.com/watch?v=6QHvWpy2Nxc" target="_blank" class="btn-link flex items-center justify-between p-6 glass-card group">
                         <div>
-                            <h5 class="font-bold text-gray-100">Yorgos Lanthimos Interview</h5>
-                            <p class="text-sm text-gray-400 mt-1">영화 'Poor Things' 감독의 독창적 관점 섀도잉</p>
+                            <h5 class="font-bold text-gray-100 group-hover:text-pink-400 transition-colors">Actors on Actors: Cate Blanchett & Michelle Yeoh</h5>
+                            <p class="text-sm text-gray-400 mt-1">거장 배우들이 영화 연기(Tár 등)와 산업에 대해 나누는 깊은 대화</p>
                         </div>
-                        <span class="text-2xl text-pink-500">▶</span>
+                        <span class="text-2xl text-pink-500 group-hover:scale-110 transition-transform">▶</span>
                     </a>
-                    <a href="https://www.youtube.com/results?search_query=Cate+Blanchett+on+cinema+interview" target="_blank" class="btn-link flex items-center justify-between p-6 glass-card">
+                    
+                    <a href="https://www.youtube.com/watch?v=PIzzgjsoLqU" target="_blank" class="btn-link flex items-center justify-between p-6 glass-card group">
                         <div>
-                            <h5 class="font-bold text-gray-100">Actors on Actors: Cate Blanchett</h5>
-                            <p class="text-sm text-gray-400 mt-1">거장 배우들이 영화 연기와 산업에 대해 나누는 깊은 대화</p>
+                            <h5 class="font-bold text-gray-100 group-hover:text-pink-400 transition-colors">Cate Blanchett Breaks Down Her Most Iconic Characters</h5>
+                            <p class="text-sm text-gray-400 mt-1">GQ 인터뷰: 자신의 상징적인 배역들에 대한 철학과 분석</p>
                         </div>
-                        <span class="text-2xl text-pink-500">▶</span>
+                        <span class="text-2xl text-pink-500 group-hover:scale-110 transition-transform">▶</span>
+                    </a>
+
+                    <a href="https://www.youtube.com/watch?v=cQOnM-A2f-o" target="_blank" class="btn-link flex items-center justify-between p-6 glass-card group">
+                        <div>
+                            <h5 class="font-bold text-gray-100 group-hover:text-pink-400 transition-colors">Cate Blanchett on the Secrets of "Tár"</h5>
+                            <p class="text-sm text-gray-400 mt-1">대본을 읽는 방식과 형이상학적, 실존적 주제에 대한 고찰</p>
+                        </div>
+                        <span class="text-2xl text-pink-500 group-hover:scale-110 transition-transform">▶</span>
+                    </a>
+                    
+                    <a href="https://www.youtube.com/watch?v=Fv0k2RdbhFs" target="_blank" class="btn-link flex items-center justify-between p-6 glass-card group">
+                        <div>
+                            <h5 class="font-bold text-gray-100 group-hover:text-pink-400 transition-colors">Ashley Williams Interview (Sundance Film Festival)</h5>
+                            <p class="text-sm text-gray-400 mt-1">인디/단편 영화 감독 겸 배우가 말하는 선댄스 영화제 이야기</p>
+                        </div>
+                        <span class="text-2xl text-pink-500 group-hover:scale-110 transition-transform">▶</span>
                     </a>
                 </div>
             </div>
@@ -172,72 +198,78 @@
 
         <!-- Practice Ground -->
         <section class="glass-card p-10 mb-12 bg-opacity-30 border-none">
-            <h2 class="text-2xl font-bold mb-8 text-center text-white">Ready for the Next Chapter?</h2>
+            <h2 class="text-2xl font-bold mb-8 text-center text-white">Ready for the Next Chapter? <span class="text-sm text-gray-400 block mt-2 font-normal">문법 구조와 어순을 다듬는 문장 연습장</span></h2>
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                 <!-- Drill 1 -->
                 <div class="space-y-4">
-                    <h4 class="font-bold text-gray-500 text-xs uppercase tracking-tighter">Daily Drill: Tense Control</h4>
+                    <h4 class="font-bold text-gray-500 text-xs uppercase tracking-tighter">Drill: 어순 (부사의 위치)</h4>
                     <div class="bg-gray-800 p-5 rounded-xl border border-gray-700 h-full flex flex-col justify-between">
                         <div>
-                            <p class="text-xs text-gray-400 mb-2 italic">"어제 그 영화를 보지 않았어요."</p>
-                            <p class="text-lg font-bold text-gray-200">I <span class="underline decoration-pink-500">didn't watch</span> that movie yesterday.</p>
+                            <p class="text-xs text-gray-400 mb-2 italic">"스토리에 더 집중할 수 있어요."</p>
+                            <p class="text-gray-500 line-through text-sm mb-1">I can more focus on the story.</p>
+                            <p class="text-lg font-bold text-gray-200">I can <span class="underline decoration-pink-500">focus more</span> on the story.</p>
                         </div>
-                        <p class="text-xs text-gray-400 mt-4 bg-gray-900 p-2 rounded">💡 'didn't' 뒤에는 무조건 동사원형!</p>
+                        <p class="text-xs text-gray-400 mt-4 bg-gray-900 p-2 rounded">💡 'more'는 동사 뒤에!</p>
                     </div>
                 </div>
                 <!-- Drill 2 -->
                 <div class="space-y-4">
-                    <h4 class="font-bold text-gray-500 text-xs uppercase tracking-tighter">Daily Drill: Expressing Habits</h4>
+                    <h4 class="font-bold text-gray-500 text-xs uppercase tracking-tighter">Drill: 접속사 활용 (불확실성)</h4>
                     <div class="bg-gray-800 p-5 rounded-xl border border-gray-700 h-full flex flex-col justify-between">
                         <div>
-                            <p class="text-xs text-gray-400 mb-2 italic">"그건 제 오래된 습관이에요."</p>
-                            <p class="text-lg font-bold text-gray-200">This is a <span class="underline decoration-indigo-500">very old habit of mine</span>.</p>
+                            <p class="text-xs text-gray-400 mb-2 italic">"넷플릭스에서 봤는지 기억이 안 나요."</p>
+                            <p class="text-gray-500 line-through text-sm mb-1">I cannot remember I watched a movie on Netflix.</p>
+                            <p class="text-lg font-bold text-gray-200">I cannot remember <span class="underline decoration-indigo-500">if I watched</span> a movie on Netflix.</p>
                         </div>
-                        <p class="text-xs text-gray-400 mt-4 bg-gray-900 p-2 rounded">💡 'long habit that I have'보다 세련된 표현</p>
+                        <p class="text-xs text-gray-400 mt-4 bg-gray-900 p-2 rounded">💡 '~인지 아닌지' 불확실할 때는 'if' 연결</p>
                     </div>
                 </div>
                 <!-- Drill 3 -->
                 <div class="space-y-4">
-                    <h4 class="font-bold text-gray-500 text-xs uppercase tracking-tighter">Daily Drill: Natural Phrasing</h4>
+                    <h4 class="font-bold text-gray-500 text-xs uppercase tracking-tighter">Drill: 전치사구 명확화</h4>
                     <div class="bg-gray-800 p-5 rounded-xl border border-gray-700 h-full flex flex-col justify-between">
                         <div>
-                            <p class="text-xs text-gray-400 mb-2 italic">"요즘 일이 바빠서 루틴이 엉망이에요."</p>
+                            <p class="text-xs text-gray-400 mb-2 italic">"요즘 회사 일이 바빠서 루틴이 엉망이에요."</p>
+                            <p class="text-gray-500 line-through text-sm mb-1">...because my work is so busy.</p>
                             <p class="text-lg font-bold text-gray-200">My routine is messed up because <span class="underline decoration-green-500">I'm so busy at work</span>.</p>
                         </div>
-                        <p class="text-xs text-gray-400 mt-4 bg-gray-900 p-2 rounded">💡 'my work is busy' 대신 'I am busy' 사용</p>
+                        <p class="text-xs text-gray-400 mt-4 bg-gray-900 p-2 rounded">💡 '일이 바쁘다'보다 '내가 직장에서 바쁘다'로 표현</p>
                     </div>
                 </div>
                 <!-- Drill 4 -->
                 <div class="space-y-4">
-                    <h4 class="font-bold text-gray-500 text-xs uppercase tracking-tighter">Daily Drill: Past Routines</h4>
+                    <h4 class="font-bold text-gray-500 text-xs uppercase tracking-tighter">Drill: 명확한 시제 (과거)</h4>
                     <div class="bg-gray-800 p-5 rounded-xl border border-gray-700 h-full flex flex-col justify-between">
                         <div>
-                            <p class="text-xs text-gray-400 mb-2 italic">"서너 달 전 제 루틴은 일찍 일어나는 거였어요."</p>
+                            <p class="text-xs text-gray-400 mb-2 italic">"몇 달 전 제 루틴은 일찍 일어나는 거였어요."</p>
+                            <p class="text-gray-500 line-through text-sm mb-1">...my routine is every day woke up early.</p>
                             <p class="text-lg font-bold text-gray-200">Months ago, my routine <span class="underline decoration-blue-500">was to wake up</span> early.</p>
                         </div>
-                        <p class="text-xs text-gray-400 mt-4 bg-gray-900 p-2 rounded">💡 과거 루틴은 동사 시제(was)로 명확히!</p>
+                        <p class="text-xs text-gray-400 mt-4 bg-gray-900 p-2 rounded">💡 과거 루틴은 be동사 과거(was) + to 부정사!</p>
                     </div>
                 </div>
                 <!-- Drill 5 -->
                 <div class="space-y-4">
-                    <h4 class="font-bold text-gray-500 text-xs uppercase tracking-tighter">Daily Drill: Uncertainty</h4>
+                    <h4 class="font-bold text-gray-500 text-xs uppercase tracking-tighter">Drill: 자연스러운 형용사</h4>
                     <div class="bg-gray-800 p-5 rounded-xl border border-gray-700 h-full flex flex-col justify-between">
                         <div>
-                            <p class="text-xs text-gray-400 mb-2 italic">"넷플릭스에서 봤는지 기억이 안 나요."</p>
-                            <p class="text-lg font-bold text-gray-200">I cannot remember <span class="underline decoration-orange-500">if I watched</span> it.</p>
+                            <p class="text-xs text-gray-400 mb-2 italic">"오래 안 걸려요. 한 40분쯤?"</p>
+                            <p class="text-gray-500 line-through text-sm mb-1">It's not that much long, maybe 40 minutes.</p>
+                            <p class="text-lg font-bold text-gray-200">It's <span class="underline decoration-orange-500">not that long</span>, maybe 40 minutes.</p>
                         </div>
-                        <p class="text-xs text-gray-400 mt-4 bg-gray-900 p-2 rounded">💡 불확실할 때는 'if (~인지 아닌지)' 활용</p>
+                        <p class="text-xs text-gray-400 mt-4 bg-gray-900 p-2 rounded">💡 'much'를 빼고 'not that long'으로 심플하게</p>
                     </div>
                 </div>
                 <!-- Drill 6 -->
                 <div class="space-y-4">
-                    <h4 class="font-bold text-gray-500 text-xs uppercase tracking-tighter">Daily Drill: Describing Time</h4>
+                    <h4 class="font-bold text-gray-500 text-xs uppercase tracking-tighter">Drill: 일반화 (복수형)</h4>
                     <div class="bg-gray-800 p-5 rounded-xl border border-gray-700 h-full flex flex-col justify-between">
                         <div>
-                            <p class="text-xs text-gray-400 mb-2 italic">"오래 안 걸려요. 한 40분쯤?"</p>
-                            <p class="text-lg font-bold text-gray-200">It's <span class="underline decoration-teal-500">not that long</span>, maybe 40 minutes.</p>
+                            <p class="text-xs text-gray-400 mb-2 italic">"저는 영화 보는 것을 좋아해요."</p>
+                            <p class="text-gray-500 line-through text-sm mb-1">I like to watch movie.</p>
+                            <p class="text-lg font-bold text-gray-200">I like to watch <span class="underline decoration-teal-500">movies</span>.</p>
                         </div>
-                        <p class="text-xs text-gray-400 mt-4 bg-gray-900 p-2 rounded">💡 'not that much long' 보다 자연스러운 원어민 표현</p>
+                        <p class="text-xs text-gray-400 mt-4 bg-gray-900 p-2 rounded">💡 일반적인 취향을 말할 때는 항상 복수형(movies) 사용</p>
                     </div>
                 </div>
             </div>
