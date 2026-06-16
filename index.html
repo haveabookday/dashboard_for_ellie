@@ -12,8 +12,6 @@
         .chart-container { position: relative; width: 100%; max-width: 400px; margin: auto; height: 300px; }
         .glass-card { background: rgba(45, 52, 54, 0.7); border-radius: 20px; border: 1px solid rgba(255, 255, 255, 0.05); box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3); backdrop-filter: blur(10px); }
         .tab-active { color: #e84393; border-bottom: 3px solid #e84393; font-weight: 700; }
-        .btn-link { transition: all 0.3s ease; }
-        .btn-link:hover { transform: translateY(-2px); background: rgba(255, 255, 255, 0.05); }
         .fade-in { animation: fadeIn 0.4s ease-out; }
         @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
         details summary { cursor: pointer; list-style: none; }
@@ -32,17 +30,10 @@
                 <div class="glass-card p-8">
                     <h2 class="text-xl font-bold mb-6 text-white">📊 Language Balance</h2>
                     <div class="chart-container"><canvas id="abilityChart"></canvas></div>
-                    <div class="mt-8 space-y-3">
-                        <div class="flex justify-between text-sm"><span class="text-gray-400">Fluency (유창성/자신감)</span><span class="font-bold text-green-400">92%</span></div>
-                        <div class="w-full bg-gray-700 h-2 rounded-full overflow-hidden"><div class="bg-green-400 h-full w-[92%]"></div></div>
-                        <div class="flex justify-between text-sm"><span class="text-gray-400">Grammar (시제 정확성)</span><span class="font-bold text-pink-400">65%</span></div>
-                        <div class="w-full bg-gray-700 h-2 rounded-full overflow-hidden"><div class="bg-pink-400 h-full w-[65%]"></div></div>
-                    </div>
                 </div>
                 <div class="p-6 rounded-2xl bg-gray-800 text-white shadow-xl border border-gray-700">
                     <h3 class="font-bold text-yellow-400 mb-3">🎬 Pro Tip for Cinephiles</h3>
-                    <p class="text-sm leading-relaxed text-gray-300 mb-2">영화가 "어렵다"고 할 때 단순히 "hard"보다는 <b>"It's quite dense and multi-layered."</b>라고 해보세요.</p>
-                    <p class="text-xs text-gray-400 border-t border-gray-600 pt-2"><b>Movie vs Film:</b> Movie는 오락적, Film은 예술적 가치를 포함할 때 자주 쓰입니다.</p>
+                    <p class="text-sm leading-relaxed text-gray-300">영화가 "어렵다"고 할 때 단순히 "hard"보다는 <b>"It's quite dense and multi-layered."</b>라고 해보세요. 영화의 깊이를 훨씬 잘 전달합니다.</p>
                 </div>
             </div>
 
@@ -55,10 +46,11 @@
                     <button onclick="window.showSection('fillers')" id="btn-fillers" class="pb-4">필러 표현</button>
                 </nav>
 
+                <!-- 실전 교정 -->
                 <div id="sec-corrections" class="space-y-4 fade-in">
                     <div class="glass-card p-6 flex flex-col md:flex-row gap-4">
                         <div class="flex-1"><h4 class="text-xs font-bold text-red-400 mb-1">COMMON MISTAKE #1</h4><p class="text-gray-500 line-through text-sm">I didn't thought about that.</p><p class="text-gray-100 font-bold">I didn't <span class="text-red-400">think</span> about that.</p></div>
-                        <div class="flex-1 border-l border-gray-600 pl-4"><h4 class="text-xs font-bold text-blue-400 mb-1">COMMON MISTAKE #2</h4><p class="text-gray-500 line-through text-sm">I'm not drive.</p><p class="text-gray-100 font-bold">I <span class="text-blue-400">don't</span> drive.</p></div>
+                        <div class="flex-1 border-l border-gray-600 pl-4"><h4 class="text-xs font-bold text-blue-400 mb-1">COMMON MISTAKE #2</h4><p class="text-gray-500 line-through text-sm">I can more focus on the story.</p><p class="text-gray-100 font-bold">I can <span class="text-blue-400">focus more</span> on the story.</p></div>
                     </div>
                     <div class="glass-card p-6 flex flex-col md:flex-row gap-4">
                         <div class="flex-1"><h4 class="text-xs font-bold text-yellow-400 mb-1">COMMON MISTAKE #3</h4><p class="text-gray-500 line-through text-sm">I don't slept.</p><p class="text-gray-100 font-bold">I didn't <span class="text-yellow-400">sleep</span>.</p></div>
@@ -66,27 +58,43 @@
                     </div>
                 </div>
 
+                <!-- 일상 표현 -->
                 <div id="sec-vocabulary" class="hidden grid grid-cols-1 md:grid-cols-2 gap-4 fade-in">
-                    <div class="glass-card p-6"><span class="text-xs font-bold bg-green-900 text-green-300 px-2 py-1 rounded">Habit</span><h5 class="font-bold mt-2">A very old habit of mine</h5><p class="text-xs italic mb-2">저의 아주 오래된 습관입니다</p><p class="text-sm bg-gray-800 p-2 rounded">"Writing a diary is a very old habit of mine."</p></div>
-                    <div class="glass-card p-6"><span class="text-xs font-bold bg-purple-900 text-purple-300 px-2 py-1 rounded">Personality</span><h5 class="font-bold mt-2">Two sides to my personality</h5><p class="text-xs italic mb-2">제 성격의 두 가지 측면</p><p class="text-sm bg-gray-800 p-2 rounded">"I have two sides to my personality."</p></div>
-                    <div class="glass-card p-6"><span class="text-xs font-bold bg-pink-900 text-pink-300 px-2 py-1 rounded">Preference</span><h5 class="font-bold mt-2">Not really my thing</h5><p class="text-xs italic mb-2">제 취향은 아니에요</p><p class="text-sm bg-gray-800 p-2 rounded">"Noisy snacks are not really my thing."</p></div>
-                    <div class="glass-card p-6"><span class="text-xs font-bold bg-blue-900 text-blue-300 px-2 py-1 rounded">Tolerance</span><h5 class="font-bold mt-2">Low tolerance (for ~)</h5><p class="text-xs italic mb-2">~에 약하다</p><p class="text-sm bg-gray-800 p-2 rounded">"I have a low tolerance for alcohol."</p></div>
+                    <div class="glass-card p-5"><span class="text-xs font-bold bg-green-900 text-green-300 px-2 py-1 rounded">Habit</span><h5 class="font-bold text-white mt-2">A very old habit of mine</h5><p class="text-xs text-gray-400 italic mb-2">저의 아주 오래된 습관입니다</p><p class="text-sm bg-gray-900 p-2 rounded">"Writing a diary is a very old habit of mine."</p></div>
+                    <div class="glass-card p-5"><span class="text-xs font-bold bg-purple-900 text-purple-300 px-2 py-1 rounded">Personality</span><h5 class="font-bold text-white mt-2">Two sides to my personality</h5><p class="text-xs text-gray-400 italic mb-2">제 성격의 두 가지 측면</p><p class="text-sm bg-gray-900 p-2 rounded">"I have two sides to my personality."</p></div>
+                    <div class="glass-card p-5"><span class="text-xs font-bold bg-pink-900 text-pink-300 px-2 py-1 rounded">Preference</span><h5 class="font-bold text-white mt-2">Not really my thing</h5><p class="text-xs text-gray-400 italic mb-2">제 취향은 아니에요</p><p class="text-sm bg-gray-900 p-2 rounded">"Noisy snacks are not really my thing."</p></div>
+                    <div class="glass-card p-5"><span class="text-xs font-bold bg-blue-900 text-blue-300 px-2 py-1 rounded">Tolerance</span><h5 class="font-bold text-white mt-2">Low tolerance (for ~)</h5><p class="text-xs text-gray-400 italic mb-2">~에 약하다</p><p class="text-sm bg-gray-900 p-2 rounded">"I have a low tolerance for alcohol."</p></div>
                 </div>
 
-                <div id="sec-resources" class="hidden space-y-4 fade-in">
-                    <a href="https://www.youtube.com/watch?v=6QHvWpy2Nxc" class="block p-4 bg-gray-800 rounded hover:bg-gray-700">Actors on Actors: Cate Blanchett & Michelle Yeoh</a>
-                    <a href="https://www.youtube.com/watch?v=PIzzgjsoLqU" class="block p-4 bg-gray-800 rounded hover:bg-gray-700">Cate Blanchett Iconic Characters (GQ)</a>
-                    <a href="https://www.youtube.com/watch?v=cQOnM-A2f-o" class="block p-4 bg-gray-800 rounded hover:bg-gray-700">Cate Blanchett on the Secrets of "Tár"</a>
-                    <a href="https://www.youtube.com/watch?v=Fv0k2RdbhFs" class="block p-4 bg-gray-800 rounded hover:bg-gray-700">Ashley Williams (Sundance)</a>
-                    <a href="https://www.youtube.com/watch?v=YorgosLanthimos" class="block p-4 bg-gray-800 rounded hover:bg-gray-700">Yorgos Lanthimos Directorial Style</a>
+                <!-- 섀도잉 리소스 -->
+                <div id="sec-resources" class="hidden space-y-3 fade-in">
+                    <a href="#" class="block p-4 bg-gray-800 rounded hover:bg-gray-700 text-sm">Actors on Actors: Cate Blanchett & Michelle Yeoh</a>
+                    <a href="#" class="block p-4 bg-gray-800 rounded hover:bg-gray-700 text-sm">Cate Blanchett Iconic Characters (GQ)</a>
+                    <a href="#" class="block p-4 bg-gray-800 rounded hover:bg-gray-700 text-sm">Cate Blanchett on the Secrets of "Tár"</a>
+                    <a href="#" class="block p-4 bg-gray-800 rounded hover:bg-gray-700 text-sm">Ashley Williams (Sundance)</a>
+                    <a href="#" class="block p-4 bg-gray-800 rounded hover:bg-gray-700 text-sm">Yorgos Lanthimos Directorial Style</a>
                 </div>
 
-                <div id="sec-fillers" class="hidden glass-card p-6 fade-in space-y-3">
-                    <h4 class="font-bold text-white mb-2">Better Fillers</h4>
-                    <p class="text-sm">"How should I put this..." (어떻게 말해야 할까요...)</p>
-                    <p class="text-sm">"What's the word..." (뭐라고 하더라...)</p>
-                    <p class="text-sm">"If I'm not mistaken..." (제가 틀리지 않았다면...)</p>
-                    <p class="text-sm">"Let me see..." (어디 보자...)</p>
+                <!-- 필러 표현 -->
+                <div id="sec-fillers" class="hidden space-y-6 fade-in">
+                    <div>
+                        <h4 class="font-bold text-white mb-3">💬 고민할 때 쓰는 표현 (Fillers)</h4>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <div class="glass-card p-4"><p class="font-bold">How should I put this...</p><p class="text-xs text-gray-400">어떻게 말해야 할까요...</p></div>
+                            <div class="glass-card p-4"><p class="font-bold">What's the word...</p><p class="text-xs text-gray-400">뭐라고 하더라...</p></div>
+                            <div class="glass-card p-4"><p class="font-bold">If I'm not mistaken...</p><p class="text-xs text-gray-400">제가 틀리지 않았다면...</p></div>
+                            <div class="glass-card p-4"><p class="font-bold">Let me see...</p><p class="text-xs text-gray-400">어디 보자...</p></div>
+                        </div>
+                    </div>
+                    <div>
+                        <h4 class="font-bold text-white mb-3">📞 통화를 위한 기본 표현</h4>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <div class="glass-card p-4"><p class="font-bold">Could you say that again?</p><p class="text-xs text-gray-400">다시 말씀해 주실래요?</p></div>
+                            <div class="glass-card p-4"><p class="font-bold">What do you mean by that?</p><p class="text-xs text-gray-400">무슨 뜻인가요?</p></div>
+                            <div class="glass-card p-4"><p class="font-bold">I'm sorry, I don't understand.</p><p class="text-xs text-gray-400">이해가 안 돼요.</p></div>
+                            <div class="glass-card p-4"><p class="font-bold">Is this the right word?</p><p class="text-xs text-gray-400">이 단어가 맞나요?</p></div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -94,24 +102,36 @@
         <section class="glass-card p-10 mb-12">
             <details open>
                 <summary class="text-2xl font-bold mb-8 text-center text-white cursor-pointer hover:text-pink-500">Ready for the Next Chapter? ▼</summary>
-                <div class="mb-8 p-6 bg-gray-800 rounded-xl border border-pink-500/20">
-                    <h3 class="font-bold text-pink-400 mb-2">💡 문법 포인트: Be vs Do 부정형</h3>
-                    <p class="text-sm text-gray-300">상태(Be)를 부정할 땐 <b>'am/are/is not'</b>, 동작(Do)을 부정할 땐 <b>'do/does/did not'</b>을 씁니다.</p>
+                
+                <div class="mb-8 p-6 bg-gray-900 rounded-xl border border-pink-500/30">
+                    <h3 class="text-lg font-bold text-white mb-4">💡 상세 문법 가이드: Be vs Do 부정형의 차이</h3>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 text-sm">
+                        <div class="bg-gray-800 p-5 rounded-lg border-l-4 border-blue-500">
+                            <p class="font-bold text-blue-400 mb-2">1. Be동사 부정 (상태/존재)</p>
+                            <p class="text-gray-300">Be동사(am, are, is)는 스스로 부정(not)을 붙일 힘이 있습니다. 상태나 기분을 말할 때 씁니다.</p>
+                            <p class="mt-2 text-white font-mono bg-black p-2 rounded italic">예: I am not busy. (바쁜 상태가 아님)</p>
+                        </div>
+                        <div class="bg-gray-800 p-5 rounded-lg border-l-4 border-rose-500">
+                            <p class="font-bold text-rose-400 mb-2">2. Do동사 부정 (동작/행위)</p>
+                            <p class="text-gray-300">일반동사는 스스로 부정하지 못해 조동사(do/does/did)의 도움을 받습니다.</p>
+                            <p class="mt-2 text-white font-mono bg-black p-2 rounded italic">예: I didn't sleep. (잔 동작을 수행하지 않음)</p>
+                        </div>
+                    </div>
                 </div>
+
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                    <div class="bg-gray-800 p-5 rounded-xl border border-gray-700"><p class="text-xs text-gray-400 italic">"스토리에 더 집중할 수 있어요."</p><p class="text-lg font-bold">I can <span class="underline">focus more</span> on the story.</p><p class="text-xs text-gray-400 mt-2">💡 'more'는 동사 뒤에!</p></div>
-                    <div class="bg-gray-800 p-5 rounded-xl border border-gray-700"><p class="text-xs text-gray-400 italic">"넷플릭스에서 봤는지 기억이 안 나요."</p><p class="text-lg font-bold">I cannot remember <span class="underline">if I watched</span> it.</p><p class="text-xs text-gray-400 mt-2">💡 불확실할 땐 'if' 활용!</p></div>
-                    <div class="bg-gray-800 p-5 rounded-xl border border-gray-700"><p class="text-xs text-gray-400 italic">"요즘 일이 바빠서 루틴이 엉망이에요."</p><p class="text-lg font-bold">...<span class="underline">I'm so busy at work</span>.</p><p class="text-xs text-gray-400 mt-2">💡 '일이 바쁘다'보다는 '내가 직장에서 바쁘다'</p></div>
-                    <div class="bg-gray-800 p-5 rounded-xl border border-gray-700"><p class="text-xs text-gray-400 italic">"서너 달 전 제 루틴은 일찍 일어나는 거였어요."</p><p class="text-lg font-bold">...<span class="underline">was to wake up</span> early.</p><p class="text-xs text-gray-400 mt-2">💡 과거 루틴은 be동사 과거(was) + to!</p></div>
-                    <div class="bg-gray-800 p-5 rounded-xl border border-gray-700"><p class="text-xs text-gray-400 italic">"오래 안 걸려요. 한 40분쯤?"</p><p class="text-lg font-bold">It's <span class="underline">not that long</span>.</p><p class="text-xs text-gray-400 mt-2">💡 'not that long'으로 심플하게!</p></div>
-                    <div class="bg-gray-800 p-5 rounded-xl border border-gray-700"><p class="text-xs text-gray-400 italic">"저는 영화 보는 것을 좋아해요."</p><p class="text-lg font-bold">I like to watch <span class="underline">movies</span>.</p><p class="text-xs text-gray-400 mt-2">💡 일반 취향은 항상 복수형!</p></div>
+                    <div class="bg-gray-800 p-5 rounded-xl border border-gray-700 h-full"><p class="text-xs text-gray-400 italic">"스토리에 더 집중할 수 있어요."</p><p class="text-lg font-bold">I can focus more on the story.</p><p class="text-xs text-gray-400 mt-2">💡 'more'는 동사 뒤에!</p></div>
+                    <div class="bg-gray-800 p-5 rounded-xl border border-gray-700 h-full"><p class="text-xs text-gray-400 italic">"넷플릭스에서 봤는지 기억이 안 나요."</p><p class="text-lg font-bold">I cannot remember if I watched a movie on Netflix.</p><p class="text-xs text-gray-400 mt-2">💡 '~인지'는 'if' 활용!</p></div>
+                    <div class="bg-gray-800 p-5 rounded-xl border border-gray-700 h-full"><p class="text-xs text-gray-400 italic">"요즘 일이 바빠서 루틴이 엉망이에요."</p><p class="text-lg font-bold">My routine is messed up because I'm so busy at work.</p><p class="text-xs text-gray-400 mt-2">💡 '일이 바쁘다'보다는 '내가 직장에서 바쁘다'</p></div>
+                    <div class="bg-gray-800 p-5 rounded-xl border border-gray-700 h-full"><p class="text-xs text-gray-400 italic">"서너 달 전 제 루틴은 일찍 일어나는 거였어요."</p><p class="text-lg font-bold">Months ago, my routine was to wake up early.</p><p class="text-xs text-gray-400 mt-2">💡 과거 루틴은 be동사 과거(was) + to!</p></div>
+                    <div class="bg-gray-800 p-5 rounded-xl border border-gray-700 h-full"><p class="text-xs text-gray-400 italic">"오래 안 걸려요. 한 40분쯤?"</p><p class="text-lg font-bold">It's not that long, maybe 40 minutes.</p><p class="text-xs text-gray-400 mt-2">💡 'not that long'으로 심플하게!</p></div>
+                    <div class="bg-gray-800 p-5 rounded-xl border border-gray-700 h-full"><p class="text-xs text-gray-400 italic">"저는 영화 보는 것을 좋아해요."</p><p class="text-lg font-bold">I like to watch movies.</p><p class="text-xs text-gray-400 mt-2">💡 일반 취향은 항상 복수형!</p></div>
                 </div>
             </details>
         </section>
 
         <footer class="text-center py-10 border-t border-gray-800">
-            <svg class="w-8 h-8 mx-auto text-gray-500 mb-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 4v16M17 4v16M3 8h18M3 16h18"></path></svg>
-            <p class="text-gray-500 text-sm">© 2026 Ellie's Language Partner. Cloud Connected. Keep your eyes on the screen, and your ears open. 🎬</p>
+            <p class="text-gray-500 text-sm">© 2026 Ellie's Language Partner. Cloud Connected. Keep your eyes on the screen, and your ears open. 🎞️</p>
         </footer>
     </div>
     
@@ -125,10 +145,7 @@
         const ctx = document.getElementById('abilityChart').getContext('2d');
         new Chart(ctx, { 
             type: 'radar', 
-            data: { 
-                labels: ['시제', '어순', '어휘', '발음', '자신감', '필러'], 
-                datasets: [{ data: [65, 70, 78, 95, 92, 60], backgroundColor: 'rgba(232, 67, 147, 0.2)', borderColor: '#e84393', borderWidth: 2 }] 
-            }, 
+            data: { labels: ['시제', '어순', '어휘', '발음', '자신감', '필러'], datasets: [{ data: [65, 70, 78, 95, 92, 60], backgroundColor: 'rgba(232, 67, 147, 0.2)', borderColor: '#e84393', borderWidth: 2 }] }, 
             options: { plugins: { legend: { display: false } }, scales: { r: { min: 0, max: 100, ticks: { display: false }, grid: { color: 'rgba(255, 255, 255, 0.1)' } } } } 
         });
     </script>
